@@ -126,4 +126,96 @@
 - Đổi **parent theme** sang `Theme.Material3.*`
 - Update **colors** theo `md_theme_light_*` và `md_theme_dark_*`
 - Dùng **typography** mới
-- Gọi `DynamicColors.applyToActivitiesIfAvailable()` để kích hoạt Material You 
+- Gọi `DynamicColors.applyToActivitiesIfAvailable()` để kích hoạt Material You
+
+---
+
+## ⚠️ **Chú ý quan trọng khi migrate M2 → M3:**
+
+### 🔧 **Breaking Changes:**
+- **Minimum API Level**: Material 3 yêu cầu API 21+ (Android 5.0)
+- **Theme inheritance**: Phải thay đổi parent theme từ `Theme.MaterialComponents.*` sang `Theme.Material3.*`
+- **Color attributes**: Một số color attributes đã bị deprecated và thay thế
+
+### 🎨 **Design System Changes:**
+- **Elevation**: M3 sử dụng elevation system mới với `surfaceVariant` và `outline`
+- **Shape**: Corner radius mặc định thay đổi (từ 4dp → 16dp cho buttons)
+- **Motion**: Animation curves và duration đã được cập nhật
+- **Spacing**: Một số spacing values đã thay đổi theo design tokens
+
+### 📱 **Component Behavior:**
+- **Buttons**: Elevated và Tonal buttons là mới, không có equivalent trong M2
+- **Navigation**: `BottomNavigationView` → `NavigationBarView` với behavior khác
+- **Cards**: M3 có 3 variants (Elevated, Outlined, Filled) thay vì chỉ 1
+- **Chips**: M3 có 4 types với behavior khác nhau
+
+---
+
+## 🚀 **Best Practices khi sử dụng Material 3:**
+
+### 1. **Dynamic Colors & Material You:**
+```kotlin
+// Kích hoạt Material You (Android 12+)
+DynamicColors.applyToActivitiesIfAvailable(
+    application,
+    DynamicColorsOptions.Builder().build()
+)
+```
+
+### 2. **Edge-to-Edge Design:**
+```kotlin
+// Kích hoạt edge-to-edge
+EdgeToEdge.enable(activity)
+// Hoặc trong theme
+<style name="Theme.App" parent="Theme.Material3.DayNight">
+    <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+</style>
+```
+
+### 3. **Color System:**
+```xml
+<!-- Sử dụng semantic colors thay vì hardcode -->
+<color name="md_theme_light_primary">#006C4C</color>
+<color name="md_theme_light_onPrimary">#FFFFFF</color>
+<color name="md_theme_light_primaryContainer">#89F8C7</color>
+<color name="md_theme_light_onPrimaryContainer">#002114</color>
+```
+
+### 4. **Typography Scale:**
+```xml
+<!-- Sử dụng M3 typography scale -->
+<item name="textAppearanceHeadlineLarge">@style/TextAppearance.Material3.HeadlineLarge</item>
+<item name="textAppearanceBodyLarge">@style/TextAppearance.Material3.BodyLarge</item>
+```
+
+### 5. **Shape System:**
+```xml
+<!-- Custom shape cho components -->
+<style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">8dp</item>
+</style>
+```
+
+---
+
+## 🔍 **Testing Checklist:**
+
+- [ ] App chạy được trên API 21+
+- [ ] Tất cả themes đã được update sang M3
+- [ ] Colors sử dụng M3 color system
+- [ ] Typography sử dụng M3 text styles
+- [ ] Components sử dụng M3 widgets
+- [ ] Dynamic colors hoạt động (Android 12+)
+- [ ] Edge-to-edge design hoạt động
+- [ ] Dark theme hoạt động đúng
+- [ ] Accessibility features hoạt động
+
+---
+
+## 📚 **Resources:**
+
+- [Material 3 Design Kit](https://www.figma.com/community/file/1035203688168086460)
+- [Material 3 Components](https://m3.material.io/components)
+- [Material 3 Migration Guide](https://m3.material.io/foundations/migrating-from-material-2)
+- [Material 3 GitHub Samples](https://github.com/material-components/material-components-android) 
