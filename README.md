@@ -15,10 +15,10 @@
 
 ## 2. 🔘 Buttons
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.Button` | `Widget.Material3.Button.Filled` |
 | `Widget.MaterialComponents.Button.OutlinedButton` | `Widget.Material3.Button.Outlined` |
-| `Widget.MaterialComponents.Button.TextButton` | `Widget.Materienl3.Button.Text` |
+| `Widget.MaterialComponents.Button.TextButton` | `Widget.Material3.Button.Text` |
 | *(Không có)* | `Widget.Material3.Button.Elevated` |
 | *(Không có)* | `Widget.Material3.Button.Tonal` |
 
@@ -26,7 +26,7 @@
 
 ## 3. 📝 Text Field
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.TextInputLayout.OutlinedBox` | `Widget.Material3.TextInputLayout.OutlinedBox` |
 | `Widget.MaterialComponents.TextInputLayout.FilledBox` | `Widget.Material3.TextInputLayout.FilledBox` |
 | `Widget.MaterialComponents.TextInputEditText.OutlinedBox` | `Widget.Material3.TextInputEditText.OutlinedBox` |
@@ -36,7 +36,7 @@
 
 ## 4. 🪂 Floating Action Button (FAB)
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.FloatingActionButton` | `Widget.Material3.FloatingActionButton` |
 | *(Không có)* | `Widget.Material3.FloatingActionButton.Small` |
 | *(Không có)* | `Widget.Material3.FloatingActionButton.Large` |
@@ -46,7 +46,7 @@
 
 ## 5. 🃏 Card
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.CardView` | `Widget.Material3.CardView.Elevated` |
 | *(Không có)* | `Widget.Material3.CardView.Outlined` |
 | *(Không có)* | `Widget.Material3.CardView.Filled` |
@@ -55,7 +55,7 @@
 
 ## 6. 🧭 Navigation
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.BottomNavigationView` | `Widget.Material3.NavigationBarView` |
 | `Widget.MaterialComponents.TabLayout` | `Widget.Material3.TabLayout` |
 | *(Không có)* | `Widget.Material3.NavigationRailView` |
@@ -64,7 +64,7 @@
 
 ## 7. 🏷 Chips
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.Chip` | `Widget.Material3.Chip.Assist` |
 | *(Không có)* | `Widget.Material3.Chip.Filter` |
 | *(Không có)* | `Widget.Material3.Chip.Input` |
@@ -74,7 +74,7 @@
 
 ## 8. 🎚 Slider / Switch
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | `Widget.MaterialComponents.Slider` | `Widget.Material3.Slider` |
 | `Widget.MaterialComponents.SwitchMaterial` | `Widget.Material3.Switch` |
 
@@ -101,7 +101,7 @@
 
 ## 10. 🖥 Edge-to-Edge & Dynamic Colors
 | **M2** | **M3** |
-|:----------------|:----------------|
+|:-------|:-------|
 | *(Không có)* | `EdgeToEdge.enable(activity)` |
 | *(Không có)* | `DynamicColors.applyToActivitiesIfAvailable(Application, DynamicColorsOptions)` |
 
@@ -126,6 +126,4 @@
 - Đổi **parent theme** sang `Theme.Material3.*`
 - Update **colors** theo `md_theme_light_*` và `md_theme_dark_*`
 - Dùng **typography** mới
-- Gọi `DynamicColors.applyToActivitiesIfAvailable()` để kích hoạt Material You
-
----
+- Gọi `DynamicColors.applyToActivitiesIfAvailable()` để kích hoạt Material You 
