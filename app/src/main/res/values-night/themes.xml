@@ -1,0 +1,15 @@
+<!-- res/values-night/themes.xml -->
+<resources>
+
+    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Màu nền mặc định -->
+        <item name="android:windowBackground">@color/my_grey</item>
+
+        <!-- Màu Primary, Secondary nếu muốn custom -->
+        <item name="colorPrimary">@color/my_red</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+
+</resources>
