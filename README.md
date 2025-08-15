@@ -218,4 +218,208 @@ EdgeToEdge.enable(activity)
 - [Material 3 Design Kit](https://www.figma.com/community/file/1035203688168086460)
 - [Material 3 Components](https://m3.material.io/components)
 - [Material 3 Migration Guide](https://m3.material.io/foundations/migrating-from-material-2)
-- [Material 3 GitHub Samples](https://github.com/material-components/material-components-android) 
+- [Material 3 GitHub Samples](https://github.com/material-components/material-components-android)
+
+---
+
+## 🛠️ **Cách Implement Material 3:**
+
+### 1. **Dependencies:**
+```gradle
+dependencies {
+    implementation 'com.google.android.material:material:1.11.0'
+    // Hoặc version mới nhất
+}
+```
+
+### 2. **Theme Setup:**
+```xml
+<!-- styles.xml -->
+<style name="Theme.App" parent="Theme.Material3.DayNight">
+    <!-- Colors -->
+    <item name="colorPrimary">@color/md_theme_light_primary</item>
+    <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+    <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+    <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+    
+    <!-- Surface colors -->
+    <item name="colorSurface">@color/md_theme_light_surface</item>
+    <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+    <item name="colorOutline">@color/md_theme_light_outline</item>
+    
+    <!-- Typography -->
+    <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Material3.HeadlineLarge</item>
+    <item name="textAppearanceBodyLarge">@style/TextAppearance.Material3.BodyLarge</item>
+</style>
+```
+
+### 3. **Application Class:**
+```kotlin
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        
+        // Kích hoạt Material You (Android 12+)
+        DynamicColors.applyToActivitiesIfAvailable(
+            this,
+            DynamicColorsOptions.Builder().build()
+        )
+    }
+}
+```
+
+### 4. **Activity Implementation:**
+```kotlin
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Kích hoạt edge-to-edge
+        EdgeToEdge.enable(this)
+        
+        setContentView(R.layout.activity_main)
+    }
+}
+```
+
+---
+
+## 🌟 **Visual Differences & New Effects:**
+
+### 🎭 **Shadow & Elevation System:**
+
+#### **Material 2:**
+- **Simple shadows**: Chỉ có 1-2 elevation levels
+- **Static shadows**: Không thay đổi theo theme
+- **Limited depth**: Ít variation trong elevation
+
+#### **Material 3:**
+- **Dynamic shadows**: Thay đổi theo theme và context
+- **Multiple elevation levels**: 0dp, 1dp, 2dp, 3dp, 4dp, 6dp, 8dp, 12dp, 16dp, 24dp
+- **Color-aware shadows**: Shadows có màu sắc thay vì chỉ đen/trắng
+- **Surface shadows**: `surfaceVariant` và `outline` tạo depth mới
+
+```xml
+<!-- M3 Elevation System -->
+<style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+    <item name="elevationOverlayEnabled">true</item>
+    <item name="elevationOverlayColor">@color/md_theme_light_surfaceVariant</item>
+</style>
+```
+
+### 🎨 **Color & Surface System:**
+
+#### **Material 2:**
+- **Primary/Secondary**: Chỉ có 2 màu chính
+- **Surface**: Chỉ có 1 surface color
+- **Static colors**: Không thay đổi theo context
+
+#### **Material 3:**
+- **Primary/Secondary/Tertiary**: 3 màu chính
+- **Surface variants**: `surface`, `surfaceVariant`, `surfaceTint`
+- **Container colors**: `primaryContainer`, `secondaryContainer`, `tertiaryContainer`
+- **Dynamic colors**: Thay đổi theo Material You (Android 12+)
+
+```xml
+<!-- M3 Color System -->
+<color name="md_theme_light_surface">#FDFDFC</color>
+<color name="md_theme_light_surfaceVariant">#DFE3EB</color>
+<color name="md_theme_light_outline">#73777F</color>
+<color name="md_theme_light_outlineVariant">#C3C7CF</color>
+```
+
+### 🔄 **Motion & Animation:**
+
+#### **Material 2:**
+- **Standard curves**: `FastOutSlowIn`, `FastOutLinearIn`
+- **Fixed durations**: 300ms, 225ms, 175ms
+- **Limited transitions**: Chỉ có basic transitions
+
+#### **Material 3:**
+- **Enhanced curves**: `Easing.Standard`, `Easing.Emphasized`
+- **Flexible durations**: 150ms, 200ms, 250ms, 300ms, 400ms
+- **Rich transitions**: State changes, shared element transitions
+- **Staggered animations**: Multiple elements animate together
+
+```kotlin
+// M3 Motion System
+val motionLayout = findViewById<MotionLayout>(R.id.motion_layout)
+motionLayout.setTransition(R.id.start, R.id.end)
+motionLayout.transitionToEnd()
+```
+
+### 🎯 **Shape & Corner System:**
+
+#### **Material 2:**
+- **Fixed corners**: 4dp cho small components, 8dp cho medium
+- **Limited shapes**: Chỉ có rounded corners
+
+#### **Material 3:**
+- **Dynamic corners**: 0dp, 4dp, 8dp, 12dp, 16dp, 20dp, 24dp, 28dp
+- **Shape families**: `Rounded`, `Cut`, `Sharp`
+- **Contextual shapes**: Different shapes cho different components
+
+```xml
+<!-- M3 Shape System -->
+<style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">16dp</item>
+</style>
+
+<style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+    <item name="cornerFamily">cut</item>
+    <item name="cornerSize">8dp</item>
+</style>
+```
+
+### 📱 **Layout & Spacing:**
+
+#### **Material 2:**
+- **Fixed spacing**: 8dp, 16dp, 24dp, 32dp
+- **Limited breakpoints**: Chỉ có mobile layout
+
+#### **Material 3:**
+- **Token-based spacing**: `spacing-1` (4dp) đến `spacing-10` (40dp)
+- **Responsive breakpoints**: Mobile, tablet, desktop
+- **Adaptive layouts**: Thay đổi theo screen size
+
+```xml
+<!-- M3 Spacing Tokens -->
+<dimen name="spacing_1">4dp</dimen>
+<dimen name="spacing_2">8dp</dimen>
+<dimen name="spacing_3">12dp</dimen>
+<dimen name="spacing_4">16dp</dimen>
+<dimen name="spacing_5">20dp</dimen>
+```
+
+### 🌈 **State Changes & Feedback:**
+
+#### **Material 2:**
+- **Basic states**: Normal, pressed, disabled
+- **Limited feedback**: Chỉ có ripple effects
+
+#### **Material 3:**
+- **Rich states**: Hover, focus, selected, activated
+- **Enhanced feedback**: Ripple, haptic feedback, sound
+- **State layers**: `stateLayerOpacity` cho different states
+
+```xml
+<!-- M3 State Layers -->
+<style name="Widget.Material3.Button" parent="Widget.Material3.Button.Filled">
+    <item name="stateLayerOpacity">0.08</item>
+    <item name="rippleColor">@color/md_theme_light_onPrimary</item>
+</style>
+```
+
+---
+
+## 🔍 **Testing Visual Differences:**
+
+- [ ] **Shadows**: Kiểm tra elevation levels và shadow colors
+- [ ] **Colors**: Verify M3 color system và surface variants
+- [ ] **Motion**: Test animation curves và durations
+- [ ] **Shapes**: Confirm corner radius và shape families
+- [ ] **Spacing**: Validate spacing tokens và responsive behavior
+- [ ] **States**: Test hover, focus, và state layer effects
+- [ ] **Dark theme**: Ensure proper contrast và color adaptation
+- [ ] **Accessibility**: Verify color contrast và touch targets 
